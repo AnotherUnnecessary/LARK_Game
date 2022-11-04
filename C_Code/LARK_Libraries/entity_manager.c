@@ -7,14 +7,13 @@ char scrollText1[512] = {
 char susText[24] = {"You are a sussy baka"};
 
 Transform *ROOT;
-Transform *entity1;
+Transform *trigger1lvl1WakeUp;
+Transform *key1lvl1;
+Transform *door1lvl1;
 Transform *entity2;
 Transform *entity3;
-Transform *entity4;
-Transform *trigger;
 Transform *scroll1;
 Transform *lantern;
-Transform *trap01;
 Transform *chest;
 
 Transform *susScroll;
@@ -26,6 +25,7 @@ void LOG_ENTITIES(){
 }
 
 void ENTITY_SETUP(){
+    //Player!
     PLAYER->position.x = mapX/2;
     PLAYER->position.y = mapY/2;
     PLAYER->OnUpdate = (&OnPlayerUpdate);
@@ -35,24 +35,53 @@ void ENTITY_SETUP(){
     PLAYER->OnUse = &ModifyHealth;
     sprintf(PLAYER->name, "PLAYER");
 
-    entity1 = ADD_ENTITY();
-    entity1->isFile = true;
-    entity1->isJob = true;
-    entity1->isVisible = true;
-    entity1->sprite = 'K';
-    entity1->position.x = 55;
-    entity1->position.y = 28;
-    entity1->tag = PICKUP;
-    entity1->level = 2;
-    entity1->OnUse = &UseKey;
-    entity1->useParam = entity1;
-    sprintf(entity1->name, "1.key");
+    //TRUE LEVEL 1 TEST
+
+    //Trigger for the player waking up
+    trigger1lvl1WakeUp = ADD_ENTITY();
+    trigger1lvl1WakeUp->isFile = false;
+    trigger1lvl1WakeUp->sprite = ' ';
+    trigger1lvl1WakeUp->level = 1;
+    trigger1lvl1WakeUp->position.x = 30;
+    trigger1lvl1WakeUp->position.y = 16;
+    trigger1lvl1WakeUp->isVisible = false;
+    trigger1lvl1WakeUp->tag = DEFAULT;
+    trigger1lvl1WakeUp->OnUpdate = &TriggerUpdate;
+    sprintf(trigger1lvl1WakeUp->name, "You're finally awake. Its a cozy corner to wake up in.");
+
+    //key 1 for door 1 in level 1
+    //tutorial stuff
+    key1lvl1 = ADD_ENTITY();
+    key1lvl1->isFile = true;
+    key1lvl1->isJob = true;
+    key1lvl1->isVisible = true;
+    key1lvl1->sprite = 'K';
+    key1lvl1->position.x = 18;
+    key1lvl1->position.y = 17;
+    key1lvl1->tag = PICKUP;
+    key1lvl1->level = 1;
+    key1lvl1->OnUse = &UseKey;
+    key1lvl1->useParam = key1lvl1;
+    sprintf(key1lvl1->name, "1.key");
+
+    door1lvl1 = ADD_ENTITY();
+    door1lvl1->isFile = false;
+    door1lvl1->isJob = true;
+    door1lvl1->sprite = '%';
+    door1lvl1->level = 1;
+    door1lvl1->position.x = 29;
+    door1lvl1->position.y = 19;
+    door1lvl1->isVisible = true;
+    door1lvl1->tag = DOOR;
+    sprintf(door1lvl1->name, "1.door");
+
+    //LEVEL 2
 
     entity2 = ADD_ENTITY();
     entity2->isFile = true;
     entity2->isJob = true;
     entity2->isVisible = true;
-    entity2->level = 1;
+    entity2->level = 2;
     entity2->position.x = 10;
     entity2->position.y = 10;
     entity2->sprite = 'K';
@@ -61,44 +90,22 @@ void ENTITY_SETUP(){
     entity2->useParam = entity2;
     sprintf(entity2->name, "2.key");
 
-    susScroll = ADD_ENTITY();
-    susScroll->isFile = false;
-    susScroll->isJob = false;
-    susScroll->isVisible= true;
-    susScroll->level = 69;
-    susScroll->sprite = '@';
-    susScroll->tag = PICKUP;
-    susScroll->OnUse = &WriteToTerminalOutput;
-    susScroll->useParam = &susText;
-    sprintf(susScroll->name, "sussy_scroll.scroll");
-    susScroll->position.x = 35;
-    susScroll->position.y = 20;
-
     entity3 = ADD_ENTITY();
-    entity3->isFile = true;
+    entity3->isFile = false;
+    entity3->isJob = true;
     entity3->sprite = '%';
-    entity3->level = 1;
+    entity3->level = 2;
     entity3->position.x = 10;
     entity3->position.y = 26;
     entity3->isVisible = true;
     entity3->tag = DOOR;
-    sprintf(entity3->name, "1.door");
-
-    entity4 = ADD_ENTITY();
-    entity4->isFile = true;
-    entity4->sprite = '%';
-    entity4->level = 2;
-    entity4->position.x = 45;
-    entity4->position.y = 17;
-    entity4->isVisible = true;
-    entity4->tag = DOOR;
-    sprintf(entity4->name, "2.door");
+    sprintf(entity3->name, "2.door");
 
     scroll1 = ADD_ENTITY();
     scroll1->isFile = true;
     scroll1->isJob = false;
     scroll1->isVisible = true;
-    scroll1->level = 1;
+    scroll1->level = 2;
     scroll1->position.x = 10;
     scroll1->position.y = 12;
     scroll1->sprite = '@';
@@ -111,7 +118,7 @@ void ENTITY_SETUP(){
     lantern->isFile = true;
     lantern->isJob = false;
     lantern->isVisible = true;
-    lantern->level = 1;
+    lantern->level = 2;
     lantern->position.x = 10;
     lantern->position.y = 8;
     lantern->sprite = '*';
@@ -123,7 +130,7 @@ void ENTITY_SETUP(){
     chest->isFile = true;
     chest->isJob = false;
     chest->isVisible = true;
-    chest->level = 1;
+    chest->level = 2;
     chest->position.x = 34;
     chest->position.y = 16;
     chest->sprite = 'X';
@@ -131,28 +138,22 @@ void ENTITY_SETUP(){
     chest->OnInteract = &OpenChest;
     sprintf(chest->name, "chest.container");
 
-    trap01 = ADD_ENTITY();
-    trap01->isFile = false;
-    trap01->isJob = false;
-    trap01->isVisible = false;
-    trap01->level = 1;
-    trap01->position.x = 29;
-    trap01->position.y = 19;
-    trap01->sprite = 'T';
-    trap01->tag = TRAP;
-    trap01->OnUpdate = &TriggerTrap;
-    sprintf(trap01->name, ".spike_lvl1.trap");
+    //SECRET LEVELS 
+    //SECRET STUFF
 
-    trigger = ADD_ENTITY();
-    trigger->isFile = false;
-    trigger->sprite = ' ';
-    trigger->level = 1;
-    trigger->position.x = 22;
-    trigger->position.y = 9;
-    trigger->isVisible = false;
-    trigger->tag = DEFAULT;
-    trigger->OnUpdate = &TriggerUpdate;
-    sprintf(trigger->name, "You enter a dark room");
+    //Among us level
+    susScroll = ADD_ENTITY();
+    susScroll->isFile = false;
+    susScroll->isJob = false;
+    susScroll->isVisible= true;
+    susScroll->level = 69;
+    susScroll->sprite = '@';
+    susScroll->tag = PICKUP;
+    susScroll->OnUse = &WriteToTerminalOutput;
+    susScroll->useParam = &susText;
+    sprintf(susScroll->name, "sussy_scroll.scroll");
+    susScroll->position.x = 35;
+    susScroll->position.y = 20;
 
     LOG_ENTITIES();
 }

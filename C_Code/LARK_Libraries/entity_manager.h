@@ -14,11 +14,12 @@ enum TAGS{
 extern char scrollText1[512];
 
 extern Transform *ROOT;
-extern Transform *entity1;
+extern Transform *trigger1lvl1WakeUp;
+extern Transform *door1lvl1;
+extern Transform *key1lvl1;
+
 extern Transform *entity2;
 extern Transform *entity3;
-extern Transform *entity4;
-extern Transform *trigger;
 extern Transform *scroll1;
 extern Transform *lantern;
 extern Transform *chest;
