@@ -1,0 +1,19 @@
+CREATED ENTITY : [ROOT] with [0] Instance ID
+CREATED ENTITY : [PLAYER] with [1] Instance ID
+CREATED ENTITY : [You're finally awake. Its a cozy corner to wake up in.] with [2] Instance ID
+CREATED ENTITY : [1.key] with [3] Instance ID
+CREATED ENTITY : [1.door] with [4] Instance ID
+CREATED ENTITY : [2.key] with [5] Instance ID
+CREATED ENTITY : [2.door] with [6] Instance ID
+CREATED ENTITY : [basics.scroll] with [7] Instance ID
+CREATED ENTITY : [lantern.light] with [8] Instance ID
+CREATED ENTITY : [chest.container] with [9] Instance ID
+CREATED ENTITY : [sussy_scroll.scroll] with [10] Instance ID
+PLAYER INPUTTED COMMAND [./pickup.sh
+]
+
+PICKED UP 1.key
+PLAYER INPUTTED COMMAND [./use.sh
+]
+PLAYER INPUTTED COMMAND [yes
+]
