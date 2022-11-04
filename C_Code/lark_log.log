@@ -1,19 +1,48 @@
 CREATED ENTITY : [ROOT] with [0] Instance ID
 CREATED ENTITY : [PLAYER] with [1] Instance ID
 CREATED ENTITY : [You're finally awake. Its a cozy corner to wake up in.] with [2] Instance ID
-CREATED ENTITY : [1.key] with [3] Instance ID
-CREATED ENTITY : [1.door] with [4] Instance ID
-CREATED ENTITY : [2.key] with [5] Instance ID
-CREATED ENTITY : [2.door] with [6] Instance ID
-CREATED ENTITY : [basics.scroll] with [7] Instance ID
-CREATED ENTITY : [lantern.light] with [8] Instance ID
-CREATED ENTITY : [chest.container] with [9] Instance ID
-CREATED ENTITY : [sussy_scroll.scroll] with [10] Instance ID
+CREATED ENTITY : [There is a big L in this room. I wonder what that could stand for?] with [3] Instance ID
+CREATED ENTITY : [This hallway feels infinitely long! ...until it isn't] with [4] Instance ID
+CREATED ENTITY : [1.key] with [5] Instance ID
+CREATED ENTITY : [1.door] with [6] Instance ID
+CREATED ENTITY : [2.key] with [7] Instance ID
+CREATED ENTITY : [2.door] with [8] Instance ID
+CREATED ENTITY : [5.door] with [9] Instance ID
+CREATED ENTITY : [awakening.scroll] with [10] Instance ID
+CREATED ENTITY : [linux.scroll] with [11] Instance ID
+CREATED ENTITY : [99.key] with [12] Instance ID
+CREATED ENTITY : [99.door] with [13] Instance ID
+CREATED ENTITY : [lantern.light] with [14] Instance ID
+CREATED ENTITY : [chest.container] with [15] Instance ID
+CREATED ENTITY : [sussy_scroll.scroll] with [16] Instance ID
 PLAYER INPUTTED COMMAND [./pickup.sh
 ]
 
 PICKED UP 1.key
 PLAYER INPUTTED COMMAND [./use.sh
 ]
-PLAYER INPUTTED COMMAND [yes
+PLAYER INPUTTED COMMAND [./pickup.sh
+]
+
+DROPPED 1.key
+PICKED UP linux.scroll
+PLAYER INPUTTED COMMAND [./use.sh
+]
+PLAYER INPUTTED COMMAND [./use.sh
+]
+PLAYER INPUTTED COMMAND [./inspect.sh
+]
+PLAYER INPUTTED COMMAND [.
+]
+PLAYER INPUTTED COMMAND [./drop.sh
+]
+PLAYER INPUTTED COMMAND [ww
+]
+PLAYER INPUTTED COMMAND [./pickup.sh
+]
+
+PICKED UP 2.key
+PLAYER INPUTTED COMMAND [./use.sh
+]
+PLAYER INPUTTED COMMAND [
 ]
