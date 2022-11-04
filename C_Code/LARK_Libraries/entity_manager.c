@@ -50,7 +50,6 @@ void ENTITY_SETUP(){
     sprintf(trigger1lvl1WakeUp->name, "You're finally awake. Its a cozy corner to wake up in.");
 
     //key 1 for door 1 in level 1
-    //tutorial stuff
     key1lvl1 = ADD_ENTITY();
     key1lvl1->isFile = true;
     key1lvl1->isJob = true;
@@ -74,6 +73,9 @@ void ENTITY_SETUP(){
     door1lvl1->isVisible = true;
     door1lvl1->tag = DOOR;
     sprintf(door1lvl1->name, "1.door");
+
+    //scrolls
+
 
     //LEVEL 2
 
