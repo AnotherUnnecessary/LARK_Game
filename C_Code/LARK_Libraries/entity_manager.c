@@ -121,7 +121,7 @@ void ENTITY_SETUP(){
     key2lvl1->tag = PICKUP;
     key2lvl1->level = 1;
     key2lvl1->OnUse = &UseKey;
-    key2lvl1->useParam = key1lvl1;
+    key2lvl1->useParam = key2lvl1;
     sprintf(key2lvl1->name, "2.key");
 
         //door 2 south level 1
