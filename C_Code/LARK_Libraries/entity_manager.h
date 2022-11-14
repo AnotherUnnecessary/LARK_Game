@@ -13,8 +13,8 @@ enum TAGS{
 //level 1
     //scrolls and glyphs
 extern char scrollText1[512];
-extern char scrollText2[48];
-extern char glyphText1[64];
+extern char scrollText2[512];
+extern char glyphText1[128];
 //secret level things
 extern char susText[24];
 

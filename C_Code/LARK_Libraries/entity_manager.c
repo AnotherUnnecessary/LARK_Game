@@ -4,13 +4,13 @@ char scrollText1[512] = {
     "\r\n'I dont know how I got here.\r\nEverything is overwhelmingly dark or blindinly bright.\r\nIm scared but there must be a way out.'\r\nThe rest of the writing is illegible."
 };
 
-char scrollText2[48] = {
-    "\r\nIt looks like scribbles of a penguin drawing"
+char scrollText2[512] = {
+    "\r\nIt looks like scribbles of a penguin drawing.\r\nThere's some writing attached.\r\n'To whoever reads this: You are trapped in a linux computer.\r\nAt least I feel like a bit moving through a PC using these Linux commands.\r\nI know I can only escape using the su password. But whats the password?'\r\nThe rest is illegible."
 };
 char scrollText3[512] = {
-    "\r\nThere's a drawing of a little guy in a spacesuit.\r\nIts very blurry though, you can barely make it out.\r\nAt the bottom of the page it reads 'cd 69.level'\r\n..."
+    "\r\nThere's a drawing of a little guy in a spacesuit.\r\nIts very blurry though, you can barely make it out.\r\nAt the bottom of the page it reads 'cd lvl69.secret'\r\n..."
 };
-char glyphText1[64]="\n\tYou think to yourself:\n'Man, this room is funny.'";
+char glyphText1[128]="\r\nYou think to yourself: 'Man, this room is funny.'\n...\n'No but seriously I need to get out of here'";
 char susText[24] = {"You are a sussy baka"};
 
 Transform *ROOT;
@@ -193,7 +193,7 @@ void ENTITY_SETUP(){
     door5lvl1->tag = DOOR;
     sprintf(door5lvl1->name, "5.door");
         //FINAL DOORS
-        //door 1 ""
+        //door 1 "Tux"
     door0lvl1 = ADD_ENTITY();
     door0lvl1->isFile = false;
     door0lvl1->isJob = true;
@@ -204,7 +204,7 @@ void ENTITY_SETUP(){
     door0lvl1->isVisible = true;
     door0lvl1->tag = DOOR;
     sprintf(door0lvl1->name, "0.door");
-        //door 2 ""
+        //door 2 "Torvalds"
     door9lvl1 = ADD_ENTITY();
     door9lvl1->isFile = false;
     door9lvl1->isJob = true;
@@ -215,7 +215,7 @@ void ENTITY_SETUP(){
     door9lvl1->isVisible = true;
     door9lvl1->tag = DOOR;
     sprintf(door9lvl1->name, "9.door");
-        //door 3 ""
+        //door 3 "1991"
     door8lvl1 = ADD_ENTITY();
     door8lvl1->isFile = false;
     door8lvl1->isJob = true;
@@ -263,8 +263,8 @@ void ENTITY_SETUP(){
     scroll3lvl1->isJob = false;
     scroll3lvl1->isVisible = true;
     scroll3lvl1->level = 1;
-    scroll3lvl1->position.x = 57;
-    scroll3lvl1->position.y = 21;
+    scroll3lvl1->position.x = 56;
+    scroll3lvl1->position.y = 22;
     scroll3lvl1->sprite = '@';
     scroll3lvl1->tag = PICKUP;
     scroll3lvl1->OnUse = &WriteToTerminalOutput;
