@@ -11,6 +11,12 @@ void WriteToTerminalOutput(char* str){
     sprintf(terminalOutput, "%s", str);
 }
 
+void AddToTerminalOutput(char* str){
+    char buf[256];
+    sprintf(buf, "\r\n %s %s %s", KWHT, str, KNRM);
+    strcat(terminalOutput, buf);
+}
+
 void SetActive(Transform* t, bool active){
     t->ALIVE = active;
 }
@@ -18,7 +24,7 @@ void SetActive(Transform* t, bool active){
 void UseLantern(void){
     for(int i = 0; i < numEntities; i++){
         Transform* e = &ENTITIES[i];
-        if(e->level != LEVEL_LOADED || strstr(e->name, ".trap")){
+        if(e->level == LEVEL_LOADED && strstr(e->name, ".trap")){
             int mapToScreenPosX = (e->position.x-PLAYER->position.x) + WIDTH/2;
             int mapToScreenPosY = (e->position.y-PLAYER->position.y) + HEIGHT/2;
             if(GET_BRIGHTNESS(mapToScreenPosX, mapToScreenPosY)!=' '){
@@ -26,7 +32,7 @@ void UseLantern(void){
                 e->isVisible = true;
                 char buf[64];
                 sprintf(buf, "\r\nFOUND [%s]", e->name);
-                strcat(terminalOutput, buf);
+                AddToTerminalOutput(buf);
             }
         }
     }
