@@ -10,20 +10,52 @@ enum TAGS{
     DOOR,
     TRAP
 };
-
-extern char glyphText1[64];
+//level 1
+    //scrolls and glyphs
 extern char scrollText1[512];
+extern char scrollText2[48];
+extern char glyphText1[64];
+//secret level things
+extern char susText[24];
 
 extern Transform *ROOT;
-extern Transform *entity1;
+//level1
+     //triggers
+extern Transform *trigger1lvl1;
+extern Transform *trigger2lvl1;
+extern Transform *trigger3lvl1;
+extern Transform *trigger4lvl1;
+extern Transform *trigger5lvl1;
+    //keys and doors
+extern Transform *key1lvl1;
+extern Transform *key2lvl1;
+extern Transform *door1lvl1;
+extern Transform *door2lvl1;
+extern Transform *door5lvl1;
+        //final doors
+extern Transform *door0lvl1;
+extern Transform *door9lvl1;
+extern Transform *door8lvl1;
+    //scrolls and glyphs
+extern Transform *scroll1lvl1;
+extern Transform *scroll2lvl1;
+extern Transform *scroll3lvl1;
+extern Transform *glyph1;
+    //lanters, chests and traps
+extern Transform *lantern1;
+extern Transform *chest;
+extern Transform *trap1;
+extern Transform *trap2;
+extern Transform *trap3;
+extern Transform *trap4;
+extern Transform *trap5;
+extern Transform *trap6;
+extern Transform *trap7;
+//Level2
 extern Transform *entity2;
 extern Transform *entity3;
-extern Transform *entity4;
-extern Transform *trigger;
-extern Transform *scroll1;
-extern Transform *lantern;
-extern Transform *chest;
-extern Transform *glyph;
+//secret levels
+extern Transform *susScroll;
 
 //logs all entities
 void LOG_ENTITIES();
