@@ -1,98 +1,13 @@
 CREATED ENTITY : [ROOT] with [0] Instance ID
 CREATED ENTITY : [PLAYER] with [1] Instance ID
-CREATED ENTITY : [You're finally awake. Its a cozy corner to wake up in.] with [2] Instance ID
-CREATED ENTITY : [There is a big L in this room. I wonder what that could stand for?] with [3] Instance ID
-CREATED ENTITY : [
-This hallway feels infinitely long! ...until it isnt.
-You see a room with a locked door.
-It looks like a bunch of circuits.] with [4] Instance ID
-CREATED ENTITY : [There's something off about this room. Try using your lantern.] with [5] Instance ID
-CREATED ENTITY : [You spot a chest across the room. Inspecting chests heals your health.
-Could be useful...] with [6] Instance ID
-CREATED ENTITY : [1.key] with [7] Instance ID
-CREATED ENTITY : [1.door] with [8] Instance ID
-CREATED ENTITY : [2.key] with [9] Instance ID
-CREATED ENTITY : [2.door] with [10] Instance ID
-CREATED ENTITY : [5.door] with [11] Instance ID
-CREATED ENTITY : [0.door] with [12] Instance ID
-CREATED ENTITY : [9.door] with [13] Instance ID
-CREATED ENTITY : [8.door] with [14] Instance ID
-CREATED ENTITY : [awakening.scroll] with [15] Instance ID
-CREATED ENTITY : [linux.scroll] with [16] Instance ID
-CREATED ENTITY : [suslevel.scroll] with [17] Instance ID
-CREATED ENTITY : [glyph1.glyph] with [18] Instance ID
-CREATED ENTITY : [chest.container] with [19] Instance ID
-CREATED ENTITY : [lantern1.light] with [20] Instance ID
-CREATED ENTITY : [trap1.trap] with [21] Instance ID
-CREATED ENTITY : [trap2.trap] with [22] Instance ID
-CREATED ENTITY : [trap3.trap] with [23] Instance ID
-CREATED ENTITY : [trap4.trap] with [24] Instance ID
-CREATED ENTITY : [trap5.trap] with [25] Instance ID
-CREATED ENTITY : [trap6.trap] with [26] Instance ID
-CREATED ENTITY : [trap7.trap] with [27] Instance ID
-CREATED ENTITY : [99.key] with [28] Instance ID
-CREATED ENTITY : [99.door] with [29] Instance ID
-CREATED ENTITY : [sussy_scroll.scroll] with [30] Instance ID
-PLAYER INPUTTED COMMAND [./pickup.sh
-]
-
-PICKED UP 1.key
-PLAYER INPUTTED COMMAND [./use.sj
-]
-PLAYER INPUTTED COMMAND [./use.sh
-]
-CALLED UseKey(1.key) => UnlockID : 1 => LEVEL_LOADED : 1
-	Found Entitity [ROOT] in Level [0] with TAG [0]
-	Found Entitity [PLAYER] in Level [1] with TAG [1]
-	Found Entitity [You're finally awake. Its a cozy corner to wake up in.] in Level [1] with TAG [0]
-	Found Entitity [There is a big L in this room. I wonder what that could stand for?] in Level [1] with TAG [0]
-	Found Entitity [
-This hallway feels infinitely long! ...until it isnt.
-You see a room with a locked door.
-It looks like a bunch of circuits.] in Level [1] with TAG [0]
-	Found Entitity [There's something off about this room. Try using your lantern.] in Level [1] with TAG [0]
-	Found Entitity [You spot a chest across the room. Inspecting chests heals your health.
-Could be useful...] in Level [1] with TAG [0]
-	Found Entitity [1.key] in Level [1] with TAG [2]
-	Found Entitity [1.door] in Level [1] with TAG [3]
-		Found Door [1.door] With UnlockID : 1
-	Found Entitity [2.key] in Level [1] with TAG [2]
-	Found Entitity [2.door] in Level [1] with TAG [3]
-		Found Door [2.door] With UnlockID : 2
-	Found Entitity [5.door] in Level [1] with TAG [3]
-		Found Door [5.door] With UnlockID : 5
-	Found Entitity [0.door] in Level [1] with TAG [3]
-		Found Door [0.door] With UnlockID : 0
-	Found Entitity [9.door] in Level [1] with TAG [3]
-		Found Door [9.door] With UnlockID : 9
-	Found Entitity [8.door] in Level [1] with TAG [3]
-		Found Door [8.door] With UnlockID : 8
-	Found Entitity [awakening.scroll] in Level [1] with TAG [2]
-	Found Entitity [linux.scroll] in Level [1] with TAG [2]
-	Found Entitity [suslevel.scroll] in Level [1] with TAG [2]
-	Found Entitity [glyph1.glyph] in Level [1] with TAG [0]
-	Found Entitity [chest.container] in Level [1] with TAG [0]
-	Found Entitity [lantern1.light] in Level [1] with TAG [2]
-	Found Entitity [trap1.trap] in Level [1] with TAG [4]
-	Found Entitity [trap2.trap] in Level [1] with TAG [4]
-	Found Entitity [trap3.trap] in Level [1] with TAG [4]
-	Found Entitity [trap4.trap] in Level [1] with TAG [4]
-	Found Entitity [trap5.trap] in Level [1] with TAG [4]
-	Found Entitity [trap6.trap] in Level [1] with TAG [4]
-	Found Entitity [trap7.trap] in Level [1] with TAG [4]
-	Found Entitity [99.key] in Level [2] with TAG [2]
-	Found Entitity [99.door] in Level [2] with TAG [3]
-	Found Entitity [sussy_scroll.scroll] in Level [69] with TAG [2]
-PLAYER INPUTTED COMMAND [./pickup.sh
-]
-
-DROPPED 1.key
-PICKED UP linux.scroll
-PLAYER INPUTTED COMMAND [./use.sh
-]
-PLAYER INPUTTED COMMAND [su
-]
-PLAYER INPUTTED COMMAND [su
-]
-PLAYER INPUTTED COMMAND [exit
-]
+CREATED ENTITY : [1.key] with [2] Instance ID
+CREATED ENTITY : [2.key] with [3] Instance ID
+CREATED ENTITY : [glyph1.glyph] with [4] Instance ID
+CREATED ENTITY : [sussy_scroll.scroll] with [5] Instance ID
+CREATED ENTITY : [1.door] with [6] Instance ID
+CREATED ENTITY : [2.door] with [7] Instance ID
+CREATED ENTITY : [basics.scroll] with [8] Instance ID
+CREATED ENTITY : [lantern.light] with [9] Instance ID
+CREATED ENTITY : [chest.container] with [10] Instance ID
+CREATED ENTITY : [.spike_lvl1.trap] with [11] Instance ID
+CREATED ENTITY : [You enter a dark room] with [12] Instance ID
