@@ -1,16 +1,29 @@
 #include "entity_manager.h"
 
 char scrollText1[512] = {
-    "\r\n'I dont know how I got here.\r\nEverything is overwhelmingly dark or blindinly bright.\r\nIm scared but there must be a way out.'\r\nThe rest of the writing is illegible."
+    "\r\nTUTORIAL OF UNIX COMMANDS\r\nUse 'ls' to see all the 'files' in the game\r\nUse 'cd' to go to other levels EXAMPLE: 'cd lvl1.level'\r\nUse 'cat' to find the stats of a file EXAMPLE: 'cat 1.key'\r\nUse 'echo' to output your thoughts into the terminal\r\nUse 'man' to see all the commands you can use and their descriptions.\r\nThats the basics. Experiment!\r\nGood luck!"
 };
 
 char scrollText2[512] = {
-    "\r\nIt looks like scribbles of a penguin drawing.\r\nThere's some writing attached.\r\n'To whoever reads this: You are trapped in a linux computer.\r\nAt least I feel like a bit moving through a PC using these Linux commands.\r\nI know I can only escape using the su password. But whats the password?'\r\nThe rest is illegible."
+    "\r\nYou find a note. It has scribbles of a penguin drawing as well as some writing.\r\nIt reads: 'Ive lost count of the days. Ive stepped on so many traps I cant move anymore.\r\nI dont feel my legs. I cant even see my legs... wait where are my legs?'\r\nThe rest is illegible.\r\nNow that you think about it: You cant see your legs either."
 };
 char scrollText3[512] = {
     "\r\nThere's a drawing of a little guy in a spacesuit.\r\nIts very blurry though, you can barely make it out.\r\nAt the bottom of the page it reads 'cd lvl69.secret'\r\n..."
 };
-char glyphText1[128]="\r\nYou think to yourself: 'Man, this room is funny.'\n...\n'No but seriously I need to get out of here'";
+
+char scrollText4[256] = {
+    "You find a piece of paper... it feels like paper\r\n'I keep seeing bits and bites of penguins...'\r\nThere's no more writing.\r\nYou look at the back of the 'paper' and you read 'cd lvl4.secret'"
+};
+
+char scrollText5[512] = {
+    "You feel a stream of 0s and 1s coming into your brain.\r\nThe penguin speaks to you.\r\n'I am tux. As you can tell, you're trapped inside of a Linux computer.'\r\nYou feel welcome yet overwhelmed by their presence\r\n'You will need this key to get out of the simulation.'\r\n'Whenever you feel lost, keep going. Doors will open themselves to you.'\r\n'Theres a reason you don't see windows around here.'\r\nIt looks at you, waiting for you to pick up the key and get going."
+};
+
+char glyphText1[128]="\r\nTraps ahead. ./use.sh of lantern '*' recommended for better visibility.";
+char glyphText2[512]="\r\nThree massive doors lay in front of you, each to their own room. Something tells you that the code to the exit hides behind them.\r\nWhy? You dont know why.";
+char glyphText0[256]="\r\nThe writing on the wall reads 'Tux'\r\n...\r\nThats a little underwhelming.\r\nIt seems important though... Maybe the other doors have more answers";
+char glyphText9[128]="\r\nThis time the wall reads 'Torvalds'\r\nOne more door and all will be revealed";
+char glyphText8[256]="\r\nYou see a bunch of 0s and 1s but for some reason you can read it\r\nIt says '1991'\r\n'become su by combining your 3 passcodes and exit out'\r\nYou finally know what to do.";
 char susText[24] = {"You are a sussy baka"};
 
 Transform *ROOT;
@@ -19,13 +32,17 @@ Transform *ROOT;
 Transform *trigger1lvl1;
 Transform *trigger2lvl1;
 Transform *trigger3lvl1;
-Transform *trigger4lvl1;
 Transform *trigger5lvl1;
+Transform *trigger6lvl1;
     //keys and doors
 Transform *key1lvl1;
 Transform *key2lvl1;
+Transform *key4lvl1;
+Transform *key5lvl1;
+Transform *key0lvl1;
 Transform *door1lvl1;
 Transform *door2lvl1;
+Transform *door4lvl1;
 Transform *door5lvl1;
         //final doors
 Transform *door0lvl1;
@@ -35,10 +52,20 @@ Transform *door8lvl1;
 Transform *scroll1lvl1;
 Transform *scroll2lvl1;
 Transform *scroll3lvl1;
+Transform *scroll4lvl1;
+Transform *scroll5lvl1;
 Transform *glyph1;
+Transform *glyph2;
+Transform *glyph3;
+Transform *glyph0;
+Transform *glyph9;
+Transform *glyph8;
     //lanters, chests and traps
 Transform *lantern1;
+Transform *lantern2;
 Transform *chest;
+Transform *chest2;
+Transform *chest3;
 Transform *trap1;
 Transform *trap2;
 Transform *trap3;
@@ -46,6 +73,11 @@ Transform *trap4;
 Transform *trap5;
 Transform *trap6;
 Transform *trap7;
+Transform *trap8;
+Transform *trap9;
+Transform *trap10;
+Transform *trap11;
+Transform *trap12;
 //Level2
 Transform *entity2;
 Transform *entity3;
@@ -74,6 +106,7 @@ void ENTITY_SETUP(){
         //Trigger for the player waking up
     trigger1lvl1 = ADD_ENTITY();
     trigger1lvl1->isFile = false;
+    trigger1lvl1->isJob= false;
     trigger1lvl1->sprite = ' ';
     trigger1lvl1->level = 1;
     trigger1lvl1->position.x = 30;
@@ -85,6 +118,7 @@ void ENTITY_SETUP(){
         //L room lol
     trigger2lvl1 = ADD_ENTITY();
     trigger2lvl1->isFile = false;
+    trigger2lvl1->isJob= false;
     trigger2lvl1->sprite = ' ';
     trigger2lvl1->level = 1;
     trigger2lvl1->position.x = 29;
@@ -96,6 +130,7 @@ void ENTITY_SETUP(){
         //hallway!
     trigger3lvl1 = ADD_ENTITY();
     trigger3lvl1->isFile = false;
+    trigger3lvl1->isJob= false;
     trigger3lvl1->sprite = ' ';
     trigger3lvl1->level = 1;
     trigger3lvl1->position.x = 34;
@@ -105,21 +140,10 @@ void ENTITY_SETUP(){
     trigger3lvl1->OnUpdate = &TriggerUpdate;
     sprintf(trigger3lvl1->name, "\r\nThis hallway feels infinitely long! ...until it isnt.\r\nYou see a room with a locked door.\r\nIt looks like a bunch of circuits.");
 
-        //You sense traps in this room (to the right of the L room after going in the hallway)
-    trigger4lvl1= ADD_ENTITY();
-    trigger4lvl1->isFile = false;
-    trigger4lvl1->sprite = ' ';
-    trigger4lvl1->level = 1;
-    trigger4lvl1->position.x = 44;
-    trigger4lvl1->position.y = 26;
-    trigger4lvl1->isVisible = false;
-    trigger4lvl1->tag = DEFAULT;
-    trigger4lvl1->OnUpdate = &TriggerUpdate;
-    sprintf(trigger4lvl1->name, "There's something off about this room. Try using your lantern.");
-
         //Chest room! to the right of the trap room
     trigger5lvl1 = ADD_ENTITY();
     trigger5lvl1->isFile = false;
+    trigger5lvl1->isJob= false;
     trigger5lvl1->sprite = ' ';
     trigger5lvl1->level = 1;
     trigger5lvl1->position.x = 48;
@@ -128,6 +152,18 @@ void ENTITY_SETUP(){
     trigger5lvl1->tag = DEFAULT;
     trigger5lvl1->OnUpdate = &TriggerUpdate;
     sprintf(trigger5lvl1->name, "You spot a chest across the room. Inspecting chests heals your health.\r\nCould be useful...");
+
+    trigger6lvl1 = ADD_ENTITY();
+    trigger6lvl1->isFile = false;
+    trigger6lvl1->isJob= false;
+    trigger6lvl1->sprite = ' ';
+    trigger6lvl1->level = 1;
+    trigger6lvl1->position.x = 37;
+    trigger6lvl1->position.y = 5;
+    trigger6lvl1->isVisible = false;
+    trigger6lvl1->tag = DEFAULT;
+    trigger6lvl1->OnUpdate = &TriggerUpdate;
+    sprintf(trigger6lvl1->name, "You enter a massive room. It feels like an empty church.\r\nIf you could scream, echo and reverb would wash over you.");
 
     //DOORS AND KEYS
         //key 1 for door 1 in level 1
@@ -181,7 +217,47 @@ void ENTITY_SETUP(){
     door2lvl1->tag = DOOR;
     sprintf(door2lvl1->name, "2.door");
 
+        //key 4, inside the room to the left of the 3 doors room
+    key4lvl1 = ADD_ENTITY();
+    key4lvl1->isFile = true;
+    key4lvl1->isJob = true;
+    key4lvl1->isVisible = true;
+    key4lvl1->sprite = 'K';
+    key4lvl1->position.x = 29;
+    key4lvl1->position.y = 12;
+    key4lvl1->tag = PICKUP;
+    key4lvl1->level = 1;
+    key4lvl1->OnUse = &UseKey;
+    key4lvl1->useParam = key4lvl1;
+    sprintf(key4lvl1->name, "4.key");
+
+        //door 4 to go up to then go to start going to tux level
+    door4lvl1 = ADD_ENTITY();
+    door4lvl1->isFile = false;
+    door4lvl1->isJob = true;
+    door4lvl1->sprite = '%';
+    door4lvl1->level = 1;
+    door4lvl1->position.x = 14;
+    door4lvl1->position.y = 9;
+    door4lvl1->isVisible = true;
+    door4lvl1->tag = DOOR;
+    sprintf(door4lvl1->name, "4.door");
+
         //Door to secret room at the end of hallway
+
+    key5lvl1 = ADD_ENTITY();
+    key5lvl1->isFile = true;
+    key5lvl1->isJob = true;
+    key5lvl1->isVisible = true;
+    key5lvl1->sprite = 'K';
+    key5lvl1->position.x = 5;
+    key5lvl1->position.y = 5;
+    key5lvl1->tag = PICKUP;
+    key5lvl1->level = 1;
+    key5lvl1->OnUse = &UseKey;
+    key5lvl1->useParam =key5lvl1;
+    sprintf(key5lvl1->name, "5.key");
+
     door5lvl1 = ADD_ENTITY();
     door5lvl1->isFile = false;
     door5lvl1->isJob = true;
@@ -194,6 +270,19 @@ void ENTITY_SETUP(){
     sprintf(door5lvl1->name, "5.door");
         //FINAL DOORS
         //door 1 "Tux"
+    key0lvl1 = ADD_ENTITY();
+    key0lvl1->isFile = true;
+    key0lvl1->isJob = true;
+    key0lvl1->isVisible = true;
+    key0lvl1->sprite = 'K';
+    key0lvl1->position.x = 34;
+    key0lvl1->position.y = 11;
+    key0lvl1->tag = PICKUP;
+    key0lvl1->level = 4;
+    key0lvl1->OnUse = &UseKey;
+    key0lvl1->useParam = key0lvl1;
+    sprintf(key0lvl1->name, "0.key");
+
     door0lvl1 = ADD_ENTITY();
     door0lvl1->isFile = false;
     door0lvl1->isJob = true;
@@ -204,6 +293,7 @@ void ENTITY_SETUP(){
     door0lvl1->isVisible = true;
     door0lvl1->tag = DOOR;
     sprintf(door0lvl1->name, "0.door");
+
         //door 2 "Torvalds"
     door9lvl1 = ADD_ENTITY();
     door9lvl1->isFile = false;
@@ -269,23 +359,117 @@ void ENTITY_SETUP(){
     scroll3lvl1->tag = PICKUP;
     scroll3lvl1->OnUse = &WriteToTerminalOutput;
     scroll3lvl1->useParam = &scrollText3;
-    sprintf(scroll3lvl1->name, "suslevel.scroll");
+    sprintf(scroll3lvl1->name, "secretlevel.scroll");
 
+        //scroll corner left go to tux
+    scroll4lvl1 = ADD_ENTITY();
+    scroll4lvl1->isFile = false;
+    scroll4lvl1->isJob = false;
+    scroll4lvl1->isVisible = true;
+    scroll4lvl1->level = 1;
+    scroll4lvl1->position.x = 1;
+    scroll4lvl1->position.y = 20;
+    scroll4lvl1->sprite = '@';
+    scroll4lvl1->tag = PICKUP;
+    scroll4lvl1->OnUse = &WriteToTerminalOutput;
+    scroll4lvl1->useParam = &scrollText4;
+    sprintf(scroll4lvl1->name, "FirstEncounter.scroll");
 
+    //talking to tux
+    scroll5lvl1 = ADD_ENTITY();
+    scroll5lvl1->isFile = false;
+    scroll5lvl1->isJob = false;
+    scroll5lvl1->isVisible = true;
+    scroll5lvl1->level = 4;
+    scroll5lvl1->position.x = 29;
+    scroll5lvl1->position.y = 11;
+    scroll5lvl1->sprite = '@';
+    scroll5lvl1->tag = PICKUP;
+    scroll5lvl1->OnUse = &WriteToTerminalOutput;
+    scroll5lvl1->useParam = &scrollText5;
+    sprintf(scroll5lvl1->name, "penguin.scroll");
         //glyphs
-        //glyph for funny trap room
+        //glyph for funny trap room warning the player
     glyph1 = ADD_ENTITY();
     glyph1->isFile = false;
     glyph1->isJob = false;
     glyph1->isVisible = true;
     glyph1->level = 1;
-    glyph1->position.x = 34;
-    glyph1->position.y = 24;
+    glyph1->position.x = 45;
+    glyph1->position.y = 27;
     glyph1->sprite = 'X';
     glyph1->tag = DEFAULT;
     glyph1->OnInteract= &AddToTerminalOutput;
     glyph1->useParam = &glyphText1;
     sprintf(glyph1->name, "glyph1.glyph");
+
+        //room with 3 doors, explains the player a little story wise
+    glyph2 = ADD_ENTITY();
+    glyph2->isFile = false;
+    glyph2->isJob = false;
+    glyph2->isVisible = true;
+    glyph2->level = 1;
+    glyph2->position.x = 44;
+    glyph2->position.y = 8;
+    glyph2->sprite = 'X';
+    glyph2->tag = DEFAULT;
+    glyph2->OnInteract= &AddToTerminalOutput;
+    glyph2->useParam = &glyphText2;
+    sprintf(glyph2->name, "glyph2.glyph");
+
+        //glyph warning in hallway all the way to the left
+    glyph3 = ADD_ENTITY();
+    glyph3->isFile = false;
+    glyph3->isJob = false;
+    glyph3->isVisible = true;
+    glyph3->level = 1;
+    glyph3->position.x = 13;
+    glyph3->position.y = 10;
+    glyph3->sprite = 'X';
+    glyph3->tag = DEFAULT;
+    glyph3->OnInteract= &AddToTerminalOutput;
+    glyph3->useParam = &glyphText1;
+    sprintf(glyph3->name, "glyph3.glyph");
+
+    //Final glyphs
+    glyph0 = ADD_ENTITY();
+    glyph0->isFile = false;
+    glyph0->isJob = false;
+    glyph0->isVisible = true;
+    glyph0->level = 1;
+    glyph0->position.x = 58;
+    glyph0->position.y = 12;
+    glyph0->sprite = 'X';
+    glyph0->tag = DEFAULT;
+    glyph0->OnInteract= &AddToTerminalOutput;
+    glyph0->useParam = &glyphText0;
+    sprintf(glyph0->name, "glyph0.glyph");
+
+    glyph9 = ADD_ENTITY();
+    glyph9->isFile = false;
+    glyph9->isJob = false;
+    glyph9->isVisible = true;
+    glyph9->level = 1;
+    glyph9->position.x = 55;
+    glyph9->position.y = 9;
+    glyph9->sprite = 'X';
+    glyph9->tag = DEFAULT;
+    glyph9->OnInteract= &AddToTerminalOutput;
+    glyph9->useParam = &glyphText9;
+    sprintf(glyph9->name, "glyph9.glyph");
+
+    glyph8 = ADD_ENTITY();
+    glyph8->isFile = false;
+    glyph8->isJob = false;
+    glyph8->isVisible = true;
+    glyph8->level = 1;
+    glyph8->position.x = 57;
+    glyph8->position.y = 4;
+    glyph8->sprite = 'X';
+    glyph8->tag = DEFAULT;
+    glyph8->OnInteract= &AddToTerminalOutput;
+    glyph8->useParam = &glyphText8;
+    sprintf(glyph8->name, "glyph8.glyph");
 
     //Chests, lanterns and traps
         //Chest1
@@ -296,10 +480,36 @@ void ENTITY_SETUP(){
     chest->level = 1;
     chest->position.x = 58;
     chest->position.y = 26;
-    chest->sprite = 'C';
+    chest->sprite = 'X';
     chest->tag = DEFAULT;
     chest->OnInteract = &OpenChest;
     sprintf(chest->name, "chest.container");
+
+        //chest2 in room of key 3
+    chest2 = ADD_ENTITY();
+    chest2->isFile = true;
+    chest2->isJob = false;
+    chest2->isVisible = true;
+    chest2->level = 1;
+    chest2->position.x = 33;
+    chest2->position.y = 10;
+    chest2->sprite = 'X';
+    chest2->tag = DEFAULT;
+    chest2->OnInteract = &OpenChest;
+    sprintf(chest2->name, "chest2.container");
+
+    chest3 = ADD_ENTITY();
+    chest3->isFile = true;
+    chest3->isJob = false;
+    chest3->isVisible = true;
+    chest3->level = 1;
+    chest3->position.x = 9;
+    chest3->position.y = 7;
+    chest3->sprite = 'X';
+    chest3->tag = DEFAULT;
+    chest3->OnInteract = &OpenChest;
+    sprintf(chest3->name, "chest3.container");
+
         //Lantern1
     lantern1 = ADD_ENTITY();
     lantern1->isFile = true;
@@ -312,6 +522,19 @@ void ENTITY_SETUP(){
     lantern1->tag = PICKUP;
     lantern1->OnUse = &UseLantern;
     sprintf(lantern1->name, "lantern1.light");
+
+    //Lantern2
+    lantern2 = ADD_ENTITY();
+    lantern2->isFile = true;
+    lantern2->isJob = false;
+    lantern2->isVisible = true;
+    lantern2->level = 1;
+    lantern2->position.x = 30;
+    lantern2->position.y = 3;
+    lantern2->sprite = '*';
+    lantern2->tag = PICKUP;
+    lantern2->OnUse = &UseLantern;
+    sprintf(lantern2->name, "lantern2.light");
         //Traps for trap room with key 2
     trap1 = ADD_ENTITY();
     trap1->isFile = false;
@@ -396,6 +619,68 @@ void ENTITY_SETUP(){
     trap7->tag = TRAP;
     trap7->OnUpdate = &TriggerTrap;
     sprintf(trap7->name, "trap7.trap");
+
+    //Traps in hallway to the left
+
+    trap8 = ADD_ENTITY();
+    trap8->isFile = false;
+    trap8->isJob = false;
+    trap8->isVisible = false;
+    trap8->level = 1;
+    trap8->position.x = 7;
+    trap8->position.y = 12;
+    trap8->sprite = 'T';
+    trap8->tag = TRAP;
+    trap8->OnUpdate = &TriggerTrapOnce;
+    sprintf(trap8->name, "trap8.trap");
+
+    trap9 = ADD_ENTITY();
+    trap9->isFile = false;
+    trap9->isJob = false;
+    trap9->isVisible = false;
+    trap9->level = 1;
+    trap9->position.x = 14;
+    trap9->position.y = 12;
+    trap9->sprite = 'T';
+    trap9->tag = TRAP;
+    trap9->OnUpdate = &TriggerTrapOnce;
+    sprintf(trap9->name, "trap9.trap");
+
+    trap10 = ADD_ENTITY();
+    trap10->isFile = false;
+    trap10->isJob = false;
+    trap10->isVisible = false;
+    trap10->level = 1;
+    trap10->position.x = 38;
+    trap10->position.y = 29;
+    trap10->sprite = 'T';
+    trap10->tag = TRAP;
+    trap10->OnUpdate = &TriggerTrapOnce;
+    sprintf(trap10->name, "trap10.trap");
+
+    trap11 = ADD_ENTITY();
+    trap11->isFile = false;
+    trap11->isJob = false;
+    trap11->isVisible = false;
+    trap11->level = 1;
+    trap11->position.x =4;
+    trap11->position.y = 11;
+    trap11->sprite = 'T';
+    trap11->tag = TRAP;
+    trap11->OnUpdate = &TriggerTrapOnce;
+    sprintf(trap11->name, "trap11.trap");
+
+    trap12 = ADD_ENTITY();
+    trap12->isFile = false;
+    trap12->isJob = false;
+    trap12->isVisible = false;
+    trap12->level = 1;
+    trap12->position.x = 6;
+    trap12->position.y = 13;
+    trap12->sprite = 'T';
+    trap12->tag = TRAP;
+    trap12->OnUpdate = &TriggerTrapOnce;
+    sprintf(trap12->name, "trap12.trap");
 
     //LEVEL 2
 
