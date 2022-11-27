@@ -7,10 +7,9 @@ char scrollText1[512] = {
 char scrollText2[512] = {
     "\r\nYou find a note. It has scribbles of a penguin drawing as well as some writing.\r\nIt reads: 'Ive lost count of the days. Ive stepped on so many traps I cant move anymore.\r\nI dont feel my legs. I cant even see my legs... wait where are my legs?'\r\nThe rest is illegible.\r\nNow that you think about it: You cant see your legs either."
 };
-char scrollText3[512] = {
-    "\r\nThere's a drawing of a little guy in a spacesuit.\r\nIts very blurry though, you can barely make it out.\r\nAt the bottom of the page it reads 'cd lvl69.secret'\r\n..."
+char scrollText3[32] = {
+    "\r\n'cd lvl1993.secret'"
 };
-
 char scrollText4[256] = {
     "You find a piece of paper... it feels like paper\r\n'I keep seeing bits and bites of penguins...'\r\nThere's no more writing.\r\nYou look at the back of the 'paper' and you read 'cd lvl4.secret'"
 };
@@ -21,9 +20,11 @@ char scrollText5[512] = {
 
 char glyphText1[128]="\r\nTraps ahead. ./use.sh of lantern '*' recommended for better visibility.";
 char glyphText2[512]="\r\nThree massive doors lay in front of you, each to their own room. Something tells you that the code to the exit hides behind them.\r\nWhy? You dont know why.";
-char glyphText0[256]="\r\nThe writing on the wall reads 'Tux'\r\n...\r\nThats a little underwhelming.\r\nIt seems important though... Maybe the other doors have more answers";
+char glyphText4[256]="\r\nYou find a vent on this corner. Thats odd...\r\nYou open the vent and see a note.\r\n'cd lvl69.secret'\r\n...\r\noh lord'";
+char glyphText0[256]="\r\nThe writing on the wall reads 'Tux'\r\n...\r\nThats a little underwhelming.\r\nIt seems important though... Maybe the other doors have more answers\r\nI think there's nothing else to do here though... Maybe checking other levels out will help.";
 char glyphText9[128]="\r\nThis time the wall reads 'Torvalds'\r\nOne more door and all will be revealed";
 char glyphText8[256]="\r\nYou see a bunch of 0s and 1s but for some reason you can read it\r\nIt says '1991'\r\n'become su by combining your 3 passcodes and exit out'\r\nYou finally know what to do.";
+char glyphText10[512]="\r\nHey! Developer speaking here.\r\nOriginally this game started as a doom inspired game\r\nIt had the same first person view and we wanted to use it as a maze\r\nBut we had to change course when we realized it wasnt very fun\r\nWe went with top view because the debugger of the doom view looked like what youre playing right now :)\r\nThats all though so developer out! Thank you for playing our game <3";
 char susText[24] = {"You are a sussy baka"};
 
 Transform *ROOT;
@@ -40,10 +41,12 @@ Transform *key2lvl1;
 Transform *key4lvl1;
 Transform *key5lvl1;
 Transform *key0lvl1;
+Transform *key8lvl1;
 Transform *door1lvl1;
 Transform *door2lvl1;
 Transform *door4lvl1;
 Transform *door5lvl1;
+Transform *door52lvl1;
         //final doors
 Transform *door0lvl1;
 Transform *door9lvl1;
@@ -57,6 +60,7 @@ Transform *scroll5lvl1;
 Transform *glyph1;
 Transform *glyph2;
 Transform *glyph3;
+Transform *glyph4;
 Transform *glyph0;
 Transform *glyph9;
 Transform *glyph8;
@@ -66,6 +70,7 @@ Transform *lantern2;
 Transform *chest;
 Transform *chest2;
 Transform *chest3;
+Transform *chest4;
 Transform *trap1;
 Transform *trap2;
 Transform *trap3;
@@ -83,6 +88,7 @@ Transform *entity2;
 Transform *entity3;
 //secret levels
 Transform *susScroll;
+Transform *glyph10;
 
 void LOG_ENTITIES(){
     for(int i = 0; i < numEntities; i++){
@@ -268,6 +274,20 @@ void ENTITY_SETUP(){
     door5lvl1->isVisible = true;
     door5lvl1->tag = DOOR;
     sprintf(door5lvl1->name, "5.door");
+
+    //another door 5 so the player can open it with key 5 again
+    //cuz If the player finds an easter egg too soon into the game it cang et confusing
+    door52lvl1 = ADD_ENTITY();
+    door52lvl1->isFile = false;
+    door52lvl1->isJob = true;
+    door52lvl1->sprite = '%';
+    door52lvl1->level = 1;
+    door52lvl1->position.x = 54;
+    door52lvl1->position.y = 19;
+    door52lvl1->isVisible = true;
+    door52lvl1->tag = DOOR;
+    sprintf(door52lvl1->name, "5.door");
+
         //FINAL DOORS
         //door 1 "Tux"
     key0lvl1 = ADD_ENTITY();
@@ -306,6 +326,21 @@ void ENTITY_SETUP(){
     door9lvl1->tag = DOOR;
     sprintf(door9lvl1->name, "9.door");
         //door 3 "1991"
+
+    key8lvl1 = ADD_ENTITY();
+    key8lvl1->isFile = true;
+    key8lvl1->isJob = true;
+    key8lvl1->isVisible = true;
+    key8lvl1->sprite = 'K';
+    key8lvl1->position.x = 7;
+    key8lvl1->position.y = 29;
+    key8lvl1->tag = PICKUP;
+    key8lvl1->level = 1;
+    key8lvl1->OnUse = &UseKey;
+    key8lvl1->useParam = key8lvl1;
+    sprintf(key8lvl1->name, "8.key");
+
+    
     door8lvl1 = ADD_ENTITY();
     door8lvl1->isFile = false;
     door8lvl1->isJob = true;
@@ -431,6 +466,19 @@ void ENTITY_SETUP(){
     glyph3->useParam = &glyphText1;
     sprintf(glyph3->name, "glyph3.glyph");
 
+    glyph4 = ADD_ENTITY();
+    glyph4->isFile = false;
+    glyph4->isJob = false;
+    glyph4->isVisible = true;
+    glyph4->level = 1;
+    glyph4->position.x = 47;
+    glyph4->position.y = 18;
+    glyph4->sprite = 'X';
+    glyph4->tag = DEFAULT;
+    glyph4->OnInteract= &AddToTerminalOutput;
+    glyph4->useParam = &glyphText4;
+    sprintf(glyph4->name, "glyph4.glyph");
+
     //Final glyphs
     glyph0 = ADD_ENTITY();
     glyph0->isFile = false;
@@ -471,6 +519,19 @@ void ENTITY_SETUP(){
     glyph8->useParam = &glyphText8;
     sprintf(glyph8->name, "glyph8.glyph");
 
+    glyph10 = ADD_ENTITY();
+    glyph10->isFile = false;
+    glyph10->isJob = false;
+    glyph10->isVisible = true;
+    glyph10->level = 1993;
+    glyph10->position.x = 42;
+    glyph10->position.y = 25;
+    glyph10->sprite = 'X';
+    glyph10->tag = DEFAULT;
+    glyph10->OnInteract= &AddToTerminalOutput;
+    glyph10->useParam = &glyphText10;
+    sprintf(glyph10->name, "glyph10.glyph");
+
     //Chests, lanterns and traps
         //Chest1
     chest = ADD_ENTITY();
@@ -509,6 +570,18 @@ void ENTITY_SETUP(){
     chest3->tag = DEFAULT;
     chest3->OnInteract = &OpenChest;
     sprintf(chest3->name, "chest3.container");
+
+    chest4 = ADD_ENTITY();
+    chest4->isFile = true;
+    chest4->isJob = false;
+    chest4->isVisible = true;
+    chest4->level = 1;
+    chest4->position.x = 36;
+    chest4->position.y = 16;
+    chest4->sprite = 'X';
+    chest4->tag = DEFAULT;
+    chest4->OnInteract = &OpenChest;
+    sprintf(chest4->name, "chest4.container");
 
         //Lantern1
     lantern1 = ADD_ENTITY();
